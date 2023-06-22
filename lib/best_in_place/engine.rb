@@ -1,8 +1,14 @@
 module BestInPlace
   class Engine < Rails::Engine
     initializer 'best_in_place' do
-      ActionView::Base.send(:include, BestInPlace::Helper)
-      ActionController::Base.send(:include, BestInPlace::ControllerExtensions)
+      ActiveSupport.on_load(:action_view) do
+        BestInPlace::ViewHelpers = self
+        include BestInPlace::Helper
+      end
+
+      ActiveSupport.on_load(:action_controller) do
+        include BestInPlace::ControllerExtensions
+      end
     end
   end
 end
