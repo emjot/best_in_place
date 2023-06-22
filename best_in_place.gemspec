@@ -19,9 +19,8 @@ SUM
   text data, boolean data and custom dropdown data. It works with RESTful controllers.
 DESC
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {spec}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.files         = Dir.glob("lib/**/*")
+  s.test_files    = Dir.glob("spec/**/*")
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency 'actionpack', '>= 3.2'
